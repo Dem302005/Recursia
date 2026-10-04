@@ -18,12 +18,17 @@ def swapPairs(head):
     second.next = first
     return second
 
-def fib(n):
+def fib(n, memo=None):
+    if memo is None:
+        memo = {}
     if n <= 0:
         return 0
     if n == 1:
         return 1
-    return fib(n - 1) + fib(n - 2)
+    if n in memo:
+        return memo[n]
+    memo[n] = fib(n - 1, memo) + fib(n - 2, memo)
+    return memo[n]
 
 def climbStairs(n, memo=None):
     if memo is None:
